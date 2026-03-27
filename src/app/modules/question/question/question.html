@@ -1,10 +1,13 @@
 <div class="question-container">
- @for (q of questions(); track q._id) {
-  <app-question-card
-    [question]="q.question"
-    [answer]="q.answer"
-    [showAnswer]="false"
-    [choices]="q.choices"
-  />
-}
+  @for (q of questions(); track q._id) {
+    <button (click)="downloadQuestionAsImage(q, $index)">Download as Image</button>
+    <div #articleRef>
+      <app-question-card
+        [question]="q.question"
+        [answer]="q.answer"
+        [showAnswer]="false"
+        [choices]="q.choices"
+      />
+    </div>
+  }
 </div>
