@@ -8,17 +8,16 @@ interface ApiResponse {
   success: boolean;
   data: IQuestion[];
   message: string;
-
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class Question {
+export class QuestionService {
   constructor(private http: HttpClient) {}
 
   getQuestions() {
-    return this.http.get<ApiResponse>(`${environment.apiUrl}/questions`).pipe(
+    return this.http.get<ApiResponse>(`${environment.apiUrl}/question`).pipe(
       catchError(this.handleError)
     );
   }
