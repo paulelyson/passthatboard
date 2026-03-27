@@ -1,3 +1,15 @@
 <div class="question-card-container">
- <p>{{ question }}</p>
+  <p>{{ question }}</p>
+  <div class="choices-wrapper">
+    @for (c of choices; track c) {
+      <div
+        class="choice"
+        [class.correct]="showAnswer && c === answer"
+        [class.incorrect]="showAnswer && c === selectedChoice && c !== answer"
+        (click)="selectChoice(c)"
+      >
+        {{ c }}
+      </div>
+    }
+  </div>
 </div>
