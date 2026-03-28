@@ -1,8 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IQuestion } from '../models/Question';
 import { environment } from '../../environments/environment';
 import { catchError, throwError } from 'rxjs';
+import { QuestionFilter } from '../models/QuestionFilter';
 
 interface ApiResponse {
   success: boolean;
@@ -16,8 +17,17 @@ interface ApiResponse {
 export class QuestionService {
   constructor(private http: HttpClient) {}
 
-  getQuestions() {
-    return this.http.get<ApiResponse>(`${environment.apiUrl}/question`).pipe(
+  getQuestions(filter: QuestionFilter) {
+    let params = new HttpParams({
+      fromObject: {
+        programs: [filter.program],
+        page: filter.page,
+        limit: filter.pageSize,
+        major: filter.major,
+        program: filter.program,
+      },
+    });
+    return this.http.get<ApiResponse>(`${environment.apiUrl}/question`, { params }).pipe(
       catchError(this.handleError)
     );
   }

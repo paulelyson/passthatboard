@@ -10,6 +10,8 @@ import {
 import { QuestionService } from '../../../services/question';
 import { IQuestion } from '../../../models/Question';
 import { ImageExportService } from '../../../services/image-export';
+import { ActivatedRoute, Params } from '@angular/router';
+import { QuestionFilter } from '../../../models/QuestionFilter';
 
 @Component({
   selector: 'app-question',
@@ -21,13 +23,19 @@ export class Question implements OnInit {
   @ViewChildren('articleRef') articleRefs!: QueryList<ElementRef>;
   questions: WritableSignal<IQuestion[]> = signal([]);
   showAllAnswers: boolean = false;
+  filter = new QuestionFilter();
   constructor(
     private questionService: QuestionService,
     private imageExportService: ImageExportService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.questionService.getQuestions().subscribe({
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.queryParamsHandling(params);
+    });
+
+    this.questionService.getQuestions(this.filter).subscribe({
       next: (response) => {
         this.questions.set(response.data);
       },
@@ -54,5 +62,13 @@ export class Question implements OnInit {
 
   delay(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  queryParamsHandling(params: Params) {
+    this.filter.program = params['program'] || 'Education';
+    this.filter.major = params['major'] || '';
+    this.filter.coverage = params['coverage'] ? (Array.isArray(params['coverage']) ? params['coverage'] : [params['coverage']]) : [];
+    this.filter.page = params['page'] ? +params['page'] : 1;
+    this.filter.pageSize = params['pageSize'] ? +params['pageSize'] : 25;
   }
 }
