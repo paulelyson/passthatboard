@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 export class QuestionCard {
   @Input() question: string = '';
   @Input() answer: string = '';
-  @Input() showAnswer: boolean = false;
+  @Input() showAnswer: boolean = true;
   @Input() choices: string[] = [];
   selectedChoice: string | null = null;
 

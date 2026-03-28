@@ -1,6 +1,7 @@
 <div class="question-container">
+  <button (click)="downloadAllQuestionsAsImages()">Download All as Images</button>
   @for (q of questions(); track q._id) {
-    <button (click)="downloadQuestionAsImage(q, $index)">Download as Image</button>
+    <!-- <button (click)="downloadQuestionAsImage(q, $index)">Download as Image</button> -->
     <div #articleRef>
       <app-question-card
         [question]="q.question"

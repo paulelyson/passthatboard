@@ -5,8 +5,8 @@ import html2canvas from 'html2canvas';
   providedIn: 'root',
 })
 export class ImageExportService {
-  downloadImage(element: HTMLElement, filename: string) {
-    html2canvas(element, {
+  downloadImage(element: HTMLElement, filename: string): Promise<void> {
+    return html2canvas(element, {
       useCORS: true,
       scale: window.devicePixelRatio,
       backgroundColor: null,

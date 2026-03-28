@@ -39,4 +39,18 @@ export class Question implements OnInit {
     console.log('Downloading question as image:', question._id, articleElement);
     this.imageExportService.downloadImage(articleElement, filename);
   }
+
+  downloadAllQuestionsAsImages() {
+    this.articleRefs.forEach(async (articleRef, index) => {
+      const question = this.questions()[index];
+      const filename = `question_${question._id}.png`;
+      console.log('Downloading question as image:', question._id, articleRef.nativeElement);
+      await this.imageExportService.downloadImage(articleRef.nativeElement, filename);
+      await this.delay(100);
+    });
+  }
+
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }
