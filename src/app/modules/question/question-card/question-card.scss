@@ -1,8 +1,8 @@
 .question-card-container {
   background-color: #c7e1ba;
-    padding: 15px 10px;
-    text-align: start;
-    border-radius: 10px;
+  padding: 15px 10px;
+  text-align: start;
+  border-radius: 10px;
 }
 
 .choices-wrapper {
@@ -31,4 +31,15 @@
   font-size: 11px;
   text-align: center;
   padding: 10px 0 0 0;
+}
+
+.major {
+  background: none;
+  text-align: end;
+  -webkit-text-decoration: underline rgba(187, 53, 180, 0.3) solid 4px;
+  text-decoration: underline rgba(187, 53, 180, 0.3) solid 4px;
+  text-underline-offset: 2px;
+  text-decoration-skip-ink: none;
+  font-size: 11px;
+  padding: 0 0 5px 0;
 }

@@ -12,6 +12,7 @@ export class QuestionCard {
   @Input() showAnswer: boolean = true;
   @Input() choices: string[] = [];
   @Input() showWatermark: boolean = true;
+  @Input() major: string = '';
   selectedChoice: string | null = null;
 
   selectChoice(choice: string) {
