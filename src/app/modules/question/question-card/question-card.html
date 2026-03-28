@@ -1,15 +1,16 @@
 <div class="question-card-container">
   <p>{{ question }}</p>
   <div class="choices-wrapper">
-    @for (c of choices; track c) {
+    @for (c of choices; track c; let i = $index) {
       <div
         class="choice"
         [class.correct]="showAnswer && c === answer"
         [class.incorrect]="showAnswer && c === selectedChoice && c !== answer"
         (click)="selectChoice(c)"
       >
-        {{ c }}
+        {{ getLetter(i) }}. {{ c }}
       </div>
     }
   </div>
+  <div *ngIf="showWatermark" class="watermark">passthatboard.com</div>
 </div>

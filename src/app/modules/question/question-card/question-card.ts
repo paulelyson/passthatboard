@@ -11,10 +11,15 @@ export class QuestionCard {
   @Input() answer: string = '';
   @Input() showAnswer: boolean = true;
   @Input() choices: string[] = [];
+  @Input() showWatermark: boolean = true;
   selectedChoice: string | null = null;
 
   selectChoice(choice: string) {
     this.selectedChoice = choice;
     this.showAnswer = true;
+  }
+
+  getLetter(index: number): string {
+    return String.fromCharCode(65 + index);
   }
 }

@@ -1,8 +1,8 @@
 .question-card-container {
   background-color: #c7e1ba;
     padding: 15px 10px;
-    text-align: justify;
-    border-radius: 6px;
+    text-align: start;
+    border-radius: 10px;
 }
 
 .choices-wrapper {
@@ -14,14 +14,21 @@
 .choice {
   background-color: #eaeed0;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .choice.correct {
   background-color: #b0bb9d;
+  font-weight: 600;
 }
 
 .choice.incorrect {
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
+}
+
+.watermark {
+  font-size: 11px;
+  text-align: center;
+  padding: 10px 0 0 0;
 }
